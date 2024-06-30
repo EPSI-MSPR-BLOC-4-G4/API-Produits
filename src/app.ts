@@ -3,6 +3,7 @@ import * as dotevnv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import productRouter from "./routes/product.routes";
+import { setupSwagger } from '../swagger';
 
 dotevnv.config();
 
@@ -13,6 +14,9 @@ if (!process.env.PORT) {
 const PORT = parseInt(process.env.PORT as string, 10);
 
 const app = express();
+
+// Setup Swagger
+setupSwagger(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
